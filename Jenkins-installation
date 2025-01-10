@@ -1,0 +1,46 @@
+
+	1. sudo su
+	2.  apt-get update
+	3. apt-get install openjdk-11-jdk -y
+	4. apt install openjdk-21-jdk -y 
+
+
+INSTALLING JENKINS
+
+https://www.jenkins.io/doc/book/installing/linux/
+
+1.	# systemctl status jenkins
+2.	# systemctl stop jenkins
+3.	# update-alternatives  —config editor (3) for (vim)
+4.	# systemctl edit jenkins
+	
+		Environment="JAVA_OPTS=-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Djava.io.tmpdir=/var/cache/jenkins/tmp/ -Dorg.apache.commons.jelly.tags.fmt.timeZone=America/New_York -Duser.timezone=America/New_York"
+
+           Environment="JENKINS_OPTS=--pluginroot=/var/cache/jenkins/plugins"
+
+Then save…….
+	# mkdir -p /var/cache/jenkins/tmp
+	# chown -R jenkins:jenkins /var/cache/jenkins/tmp 	# systemctl status jenkins
+     # systemctl status jenkins
+	# systemctl show jenkins
+     # systemd-analyze verify jenkins.service
+     # systemctl start jenkins
+	# systemctl  status jenkins
+	# journal -u jenkins
+
+
+
+004- INSTALL TRIVY……………………………………………………..
+
+sudo apt-get install wget apt-transport-https gnupg lsb-release -y
+
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+
+echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+
+sudo apt-get update
+
+sudo apt-get install trivy -y
+
+005------INSTALL MAVEN
+#apt install maven -y
